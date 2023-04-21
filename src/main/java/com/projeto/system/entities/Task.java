@@ -35,13 +35,12 @@ public class Task {
     private Date deadline;
 
     @ManyToOne
+    @JoinColumn(name = "team_member_id")
     private TeamMember teamMember;
 
-    @ManyToOne
-    @JoinColumn(name = "task_status_id")
-    private TaskStatus taskStatus;
+    private Integer taskStatus;
 
     @Column(name = "total_price")
-    private double totalPrice;
+    private Double totalPrice;
 
 }

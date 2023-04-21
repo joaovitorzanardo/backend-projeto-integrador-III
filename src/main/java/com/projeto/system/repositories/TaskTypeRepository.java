@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskTypeRepository extends JpaRepository<TaskType, Long> {
+
+    public TaskType findByTaskTypeId(Long taskTypeId);
+
 }
