@@ -11,10 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductService {
 
     @Autowired
     ClientRepository clientRepository;
@@ -25,7 +24,6 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductRepository productRepository;
 
-    @Override
     public Product saveProduct(ProductDTO productDTO) {
         Client client = clientRepository.findClientByClientId(productDTO.getClientId());
         ProductType productType = productTypeRepository.findProductTypeByProductTypeId(productDTO.getProductTypeId());
@@ -42,7 +40,6 @@ public class ProductServiceImpl implements ProductService{
         return productRepository.save(product);
     }
 
-    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }

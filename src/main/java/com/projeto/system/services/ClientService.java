@@ -10,12 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClientServiceImpl implements ClientService {
+public class ClientService {
 
     @Autowired
     ClientRepository clientRepository;
 
-    @Override
     public Client saveClient(ClientDTO clientDTO) {
         Address address = Address.builder()
                 .uf(clientDTO.getAddressDTO().getUf())
@@ -34,8 +33,7 @@ public class ClientServiceImpl implements ClientService {
                 .build();
         return clientRepository.save(client);
     }
-
-    @Override
+    
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
