@@ -1,4 +1,4 @@
-package com.projeto.system.services.team;
+package com.projeto.system.services;
 
 import com.projeto.system.dto.TeamDTO;
 import com.projeto.system.entities.Team;
@@ -9,17 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TeamServiceImpl implements TeamService {
+public class TeamService {
 
     @Autowired
     private TeamRepository teamRepository;
 
-    @Override
     public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
 
-    @Override
     public Team saveTeam(TeamDTO teamDTO) {
         Team team = new Team();
         team.setName(teamDTO.getName());

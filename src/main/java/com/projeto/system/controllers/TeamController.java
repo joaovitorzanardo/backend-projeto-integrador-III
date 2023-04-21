@@ -2,7 +2,7 @@ package com.projeto.system.controllers;
 
 import com.projeto.system.dto.TeamDTO;
 import com.projeto.system.entities.Team;
-import com.projeto.system.services.team.TeamServiceImpl;
+import com.projeto.system.services.TeamService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.List;
 public class TeamController {
 
     @Autowired
-    private TeamServiceImpl teamService;
+    private TeamService teamService;
 
     @GetMapping
     public List<Team> getAllTeams() {

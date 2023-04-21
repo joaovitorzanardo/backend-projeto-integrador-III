@@ -1,4 +1,4 @@
-package com.projeto.system.services.user;
+package com.projeto.system.services;
 
 import com.projeto.system.dto.UserDTO;
 import com.projeto.system.entities.User;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;

@@ -2,7 +2,7 @@ package com.projeto.system.controllers;
 
 import com.projeto.system.dto.ClientDTO;
 import com.projeto.system.entities.Client;
-import com.projeto.system.services.client.ClientServiceImpl;
+import com.projeto.system.services.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ClientController {
 
     @Autowired
-    ClientServiceImpl clientService;
+    ClientService clientService;
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,

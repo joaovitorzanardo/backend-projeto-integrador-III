@@ -2,8 +2,7 @@ package com.projeto.system.controllers;
 
 import com.projeto.system.dto.ProductTypeDTO;
 import com.projeto.system.entities.ProductType;
-import com.projeto.system.services.productType.ProductTypeService;
-import com.projeto.system.services.productType.ProductTypeServiceImpl;
+import com.projeto.system.services.ProductTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ import java.util.List;
 public class ProductTypeController {
 
     @Autowired
-    ProductTypeServiceImpl productTypeService;
+    ProductTypeService productTypeService;
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,

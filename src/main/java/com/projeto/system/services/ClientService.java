@@ -1,4 +1,4 @@
-package com.projeto.system.services.client;
+package com.projeto.system.services;
 
 import com.projeto.system.dto.ClientDTO;
 import com.projeto.system.entities.Address;
@@ -33,7 +33,7 @@ public class ClientService {
                 .build();
         return clientRepository.save(client);
     }
-    
+
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }

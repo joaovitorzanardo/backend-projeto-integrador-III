@@ -1,4 +1,4 @@
-package com.projeto.system.services.product;
+package com.projeto.system.services;
 
 import com.projeto.system.dto.ProductDTO;
 import com.projeto.system.entities.Client;

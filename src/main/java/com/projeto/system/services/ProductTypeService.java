@@ -1,4 +1,4 @@
-package com.projeto.system.services.productType;
+package com.projeto.system.services;
 
 import com.projeto.system.dto.ProductTypeDTO;
 import com.projeto.system.entities.ProductType;
@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductTypeServiceImpl  implements ProductTypeService{
+public class ProductTypeService {
 
     @Autowired
     ProductTypeRepository productTypeRepository;
 
-
-    @Override
     public ProductType saveProductType(ProductTypeDTO productTypeDTO) {
         ProductType productType = ProductType.builder()
                 .description(productTypeDTO.getDescription())
@@ -23,7 +21,6 @@ public class ProductTypeServiceImpl  implements ProductTypeService{
         return productTypeRepository.save(productType);
     }
 
-    @Override
     public List<ProductType> getAllProductTypes() {
         return productTypeRepository.findAll();
     }

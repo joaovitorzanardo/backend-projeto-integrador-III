@@ -2,7 +2,7 @@ package com.projeto.system.controllers;
 
 import com.projeto.system.dto.UserDTO;
 import com.projeto.system.entities.User;
-import com.projeto.system.services.user.UserServiceImpl;
+import com.projeto.system.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,10 @@ import java.util.List;
 @RequestMapping(path = "user")
 public class UserController {
 
-    private final UserServiceImpl usuarioService;
+    private final UserService usuarioService;
 
     @Autowired
-    public UserController(UserServiceImpl usuarioService) {
+    public UserController(UserService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
