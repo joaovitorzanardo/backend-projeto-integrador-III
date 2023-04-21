@@ -1,7 +1,10 @@
 package com.projeto.system.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "team")
@@ -30,5 +33,8 @@ public class Team {
 
     @Column(name = "description", length = 200)
     private String description;
+
+    @OneToMany(mappedBy = "team")
+    private List<TeamMember> teamMembers;
 
 }

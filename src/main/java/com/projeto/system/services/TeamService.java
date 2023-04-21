@@ -24,4 +24,8 @@ public class TeamService {
         team.setDescription(teamDTO.getDescription());
         return teamRepository.save(team);
     }
+
+    public Team getTeamById(Long teamId) {
+        return teamRepository.findTeamByTeamId(teamId);
+    }
 }

@@ -1,12 +1,12 @@
 package com.projeto.system.repositories;
 
-import com.projeto.system.entities.Team;
+import com.projeto.system.entities.TeamMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface TeamRepository extends JpaRepository<Team, Long> {
+import java.util.List;
 
-    public Team findTeamByTeamId(Long teamId);
-    
+@Repository
+public interface TeamMemberRepository extends JpaRepository<TeamMember, Long> {
+
 }
