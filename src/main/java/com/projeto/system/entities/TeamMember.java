@@ -1,4 +1,4 @@
 package com.projeto.system.entities;
 
-public class UserTeam {
+public class TeamMember {
 }

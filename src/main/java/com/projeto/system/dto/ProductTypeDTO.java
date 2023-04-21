@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class TeamRoleDTO {
-    @NotBlank(message = "A descrição da função deve ser informada.")
+public class ProductTypeDTO {
+    @NotBlank(message = "A descrição deve ser informada.")
     private String description;
 }
