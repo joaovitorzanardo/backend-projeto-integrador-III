@@ -46,4 +46,8 @@ public class Client {
     @JsonIgnore
     private List<Product> products;
 
+    @OneToMany(mappedBy = "client")
+    @JsonIgnore
+    private List<Task> tasks;
+
 }

@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +22,23 @@ public class ProductTypeController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ProductType> saveProductType(@Valid @RequestBody ProductTypeDTO productTypeDTO) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public String saveProductType(@Valid @RequestBody ProductTypeDTO productTypeDTO) {
         ProductType newProductType = productTypeService.saveProductType(productTypeDTO);
-        return new ResponseEntity<>(newProductType, HttpStatus.CREATED);
+        return "Tipo de Produto Criado com Sucesso!";
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String updateProductType(@Valid @RequestBody ProductTypeDTO productTypeDTO, @RequestParam Long productTypeId) throws Exception {
+        productTypeService.updateProductType(productTypeDTO, productTypeId);
+        return "Tipo de Produto Atualizado!";
+    }
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteProductType(@RequestParam Long productTypeId) throws Exception {
+        productTypeService.deleteProductType(productTypeId);
+        return "Tipo de Produto Excluído!";
     }
 
     @GetMapping

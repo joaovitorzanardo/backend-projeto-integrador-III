@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "task")
@@ -40,7 +41,7 @@ public class Task {
 
     private Integer taskStatus;
 
-    @Column(name = "total_price")
-    private Double totalPrice;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<TaskItem> taskItems;
 
 }

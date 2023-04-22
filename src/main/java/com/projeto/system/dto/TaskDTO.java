@@ -1,19 +1,21 @@
 package com.projeto.system.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 public class TaskDTO {
 
-    @NotNull
+    @NotNull(message = "O cliente deve ser informado.")
     private Long clientId;
-    private Date deadline;
+    private String deadline;
     private Long teamMemberId;
-    @NotBlank
+    @NotNull(message = "O tipo de tarefa deve ser informado.")
     private Long taskTypeId;
+    @JsonProperty("taskItems")
+    List<TaskItemDTO> taskItems;
 
 }
