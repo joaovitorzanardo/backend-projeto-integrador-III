@@ -24,8 +24,8 @@ public class ProductTypeController {
     )
     @ResponseStatus(HttpStatus.CREATED)
     public String saveProductType(@Valid @RequestBody ProductTypeDTO productTypeDTO) {
-        ProductType newProductType = productTypeService.saveProductType(productTypeDTO);
-        return "Tipo de Produto Criado com Sucesso!";
+        productTypeService.saveProductType(productTypeDTO);
+        return "Tipo de Produto Cadastrado com Sucesso!";
     }
 
     @PutMapping

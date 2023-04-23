@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +22,24 @@ public class TaskTypeController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<TaskType> saveTaskType(@Valid @RequestBody TaskTypeDTO taskTypeDTO) {
-        TaskType newTaskType = taskTypeService.saveTaskType(taskTypeDTO);
-        return new ResponseEntity<>(newTaskType, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public String saveTaskType(@Valid @RequestBody TaskTypeDTO taskTypeDTO) {
+        taskTypeService.saveTaskType(taskTypeDTO);
+        return "Tipo de Tarefa Criada com Sucesso!";
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String updateTaskType(@Valid @RequestBody TaskTypeDTO taskTypeDTO, @RequestParam Long taskTypeId) {
+        taskTypeService.updateTaskType(taskTypeDTO, taskTypeId);
+        return "Tipo de Tarefa Atualizada!";
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteTaskType(@RequestParam Long taskTypeId) {
+        taskTypeService.deleteTask(taskTypeId);
+        return "Tipo de Tarefa Excluída!";
     }
 
     @GetMapping

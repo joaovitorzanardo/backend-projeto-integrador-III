@@ -5,4 +5,5 @@ public class TaskStatus {
     public static final Integer EXECUTANDO = 2;
     public static final Integer AGUARDANDO_RETIRADA = 3;
     public static final Integer FINALIZADO = 4;
+    public static final Integer CANCELADO = 5;
 }

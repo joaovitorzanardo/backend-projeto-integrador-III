@@ -1,5 +1,6 @@
 package com.projeto.system.services;
 
+import com.projeto.system.constants.TaskStatus;
 import com.projeto.system.dto.TaskItemDTO;
 import com.projeto.system.entities.Product;
 import com.projeto.system.entities.TaskItem;
@@ -22,6 +23,18 @@ public class TaskItemService {
     @Autowired
     TaskTypeRepository taskTypeRepository;
 
+    public void saveTaskItem(TaskItemDTO taskItemDTO) {
+        Product product = productRepository.findProductByProductId(taskItemDTO.getProductId());
+        TaskType taskType = taskTypeRepository.findByTaskTypeId(taskItemDTO.getTaskTypeId());
+        TaskItem taskItem = TaskItem.builder()
+                .product(product)
+                .taskType(taskType)
+                .description(taskItemDTO.getDescription())
+                .taskStatus(TaskStatus.NAO_INICIADO)
+                .price(taskItemDTO.getPrice()).build();
+        taskItemRepository.save(taskItem);
+    }
+
     public void updateTaskItem(TaskItemDTO taskItemDTO, Long taskItemId) {
         TaskItem taskItem = taskItemRepository.findByTaskItemId(taskItemId);
         Product product = productRepository.findProductByProductId(taskItemDTO.getProductId());
@@ -31,11 +44,6 @@ public class TaskItemService {
         taskItem.setTaskStatus(taskItemDTO.getTaskStatus());
         taskItem.setDescription(taskItemDTO.getDescription());
         taskItemRepository.save(taskItem);
-    }
-
-    public void deleteTaskItem(Long taskItemId){
-        TaskItem taskItem = taskItemRepository.findByTaskItemId(taskItemId);
-        taskItemRepository.delete(taskItem);
     }
 
 }

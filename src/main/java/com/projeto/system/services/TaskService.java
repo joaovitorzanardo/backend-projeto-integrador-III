@@ -41,7 +41,6 @@ public class TaskService {
                 .client(client)
                 .deadline(taskDeadlineDate)
                 .taskStatus(TaskStatus.NAO_INICIADO)
-                .totalPrice(0.0)
                 .build();
         if (taskDAO.getTeamMemberId() != null) {
             TeamMember teamMember = teamMemberRepository.findByTeamMemberId(taskDAO.getTeamMemberId());

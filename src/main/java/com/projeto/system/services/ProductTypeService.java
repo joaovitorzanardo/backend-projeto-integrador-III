@@ -19,24 +19,21 @@ public class ProductTypeService {
     @Autowired
     ProductRepository productRepository;
 
-    public ProductType saveProductType(ProductTypeDTO productTypeDTO) {
+    public void saveProductType(ProductTypeDTO productTypeDTO) {
         ProductType productType = ProductType.builder()
                 .description(productTypeDTO.getDescription())
                 .build();
-        return productTypeRepository.save(productType);
+        productTypeRepository.save(productType);
     }
 
     public void updateProductType(ProductTypeDTO productTypeDTO, Long productTypeId) {
         ProductType productType = productTypeRepository.findProductTypeByProductTypeId(productTypeId);
         productType.setDescription(productTypeDTO.getDescription());
+        productTypeRepository.save(productType);
     }
 
     public void deleteProductType(Long productTypeId) throws Exception {
         ProductType productType = productTypeRepository.findProductTypeByProductTypeId(productTypeId);
-        Product product = productRepository.findProductByProductType(productType);
-        if (product == null) {
-            throw new Exception("Esse tipo de produto está vinculado a um produto. Não é possível fazer a exclusão!");
-        }
         productTypeRepository.delete(productType);
     }
 

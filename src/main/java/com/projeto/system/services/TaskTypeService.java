@@ -14,10 +14,21 @@ public class TaskTypeService {
     @Autowired
     TaskTypeRepository taskTypeRepository;
 
-    public TaskType saveTaskType(TaskTypeDTO taskTypeDTO){
+    public void saveTaskType(TaskTypeDTO taskTypeDTO){
         TaskType taskType = TaskType.builder()
                 .description(taskTypeDTO.getDescription()).build();
-        return taskTypeRepository.save(taskType);
+        taskTypeRepository.save(taskType);
+    }
+
+    public void updateTaskType(TaskTypeDTO taskTypeDTO, Long taskTypeId) {
+        TaskType taskType = taskTypeRepository.findByTaskTypeId(taskTypeId);
+        taskType.setDescription(taskTypeDTO.getDescription());
+        taskTypeRepository.save(taskType);
+    }
+
+    public void deleteTask(Long taskTypeId) {
+        TaskType taskType = taskTypeRepository.findByTaskTypeId(taskTypeId);
+        taskTypeRepository.delete(taskType);
     }
 
     public List<TaskType> getAllTaskTypes(){

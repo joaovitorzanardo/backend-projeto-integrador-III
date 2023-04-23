@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +22,24 @@ public class ClientController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Client> saveClient(@Valid @RequestBody ClientDTO clientDTO) {
-        Client newClient = clientService.saveClient(clientDTO);
-        return new ResponseEntity<Client>(newClient, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public String saveClient(@Valid @RequestBody ClientDTO clientDTO) {
+        clientService.saveClient(clientDTO);
+        return "Cliente Cadastrado Com Sucesso!";
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String updateClient(@Valid @RequestBody ClientDTO clientDTO, @RequestParam Long clientId){
+        clientService.updateClient(clientDTO, clientId);
+        return "Cliente Atualizado!";
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteClient(@RequestParam Long clientId) throws Exception {
+        clientService.deleteClient(clientId);
+        return "Cliente Excluído";
     }
 
     @GetMapping

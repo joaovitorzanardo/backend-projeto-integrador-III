@@ -18,11 +18,23 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Team saveTeam(TeamDTO teamDTO) {
+    public void saveTeam(TeamDTO teamDTO) {
         Team team = new Team();
         team.setName(teamDTO.getName());
         team.setDescription(teamDTO.getDescription());
-        return teamRepository.save(team);
+        teamRepository.save(team);
+    }
+
+    public void updateTeam(TeamDTO teamDTO, Long teamId) {
+        Team team = teamRepository.findTeamByTeamId(teamId);
+        team.setName(teamDTO.getName());
+        team.setDescription(teamDTO.getDescription());
+        teamRepository.save(team);
+    }
+
+    public void deleteTeam(Long teamId) {
+        Team team = teamRepository.findTeamByTeamId(teamId);
+        teamRepository.delete(team);
     }
 
     public Team getTeamById(Long teamId) {
