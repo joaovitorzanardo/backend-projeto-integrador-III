@@ -34,7 +34,7 @@ public class Team {
     @Column(name = "description", length = 200)
     private String description;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamMember> teamMembers;
 
 }

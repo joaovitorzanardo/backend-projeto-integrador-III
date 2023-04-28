@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,24 +15,36 @@ import java.util.List;
 @RequestMapping(path = "user")
 public class UserController {
 
-    private final UserService usuarioService;
-
     @Autowired
-    public UserController(UserService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+    UserService userService;
 
     @GetMapping
     public List<User> getAllUsers() {
-        return usuarioService.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<User> saveUser(@Valid @RequestBody UserDTO userDTO){
-        User newUser  = usuarioService.saveUser(userDTO);
-        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.CREATED)
+    public String saveUser(@Valid @RequestBody UserDTO userDTO){
+        userService.saveUser(userDTO);
+        return "Usuário Criado com Sucesso!";
     }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String updateUser(@Valid @RequestBody UserDTO userDTO, @RequestParam Long userId) {
+        userService.updateUser(userDTO, userId);
+        return "Usuário Atualizado!";
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteUser(@RequestParam Long userId) {
+        userService.deleteUser(userId);
+        return "Usuário Excluído!";
+    }
+
 }

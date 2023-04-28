@@ -10,4 +10,5 @@ public class TeamDTO {
     @NotBlank(message = "O nome da equipe deve ser informado.")
     private String name;
     private String description;
+    private List<Long> teamMembers;
 }

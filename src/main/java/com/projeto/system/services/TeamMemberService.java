@@ -10,9 +10,6 @@ import com.projeto.system.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class TeamMemberService {
 
@@ -25,9 +22,8 @@ public class TeamMemberService {
     @Autowired
     UserRepository userRepository;
 
-    public List<TeamMember> saveTeamMembers(TeamMemberDTO teamMemberDTO) {
+    public void saveTeamMembers(TeamMemberDTO teamMemberDTO) {
         Team team = teamRepository.findTeamByTeamId(teamMemberDTO.getTeamId());
-        List<TeamMember> teamMembers = new ArrayList<>();
         for (Long userId: teamMemberDTO.getUsers()) {
             User user = userRepository.findUserByUserId(userId);
             TeamMember teamMember = TeamMember.builder()
@@ -35,9 +31,12 @@ public class TeamMemberService {
                     .team(team)
                     .build();
             teamMemberRepository.save(teamMember);
-            teamMembers.add(teamMember);
         }
-        return teamMembers;
+    }
+
+    public void deleteTeamMember(Long teamMemberId) {
+        TeamMember teamMember = teamMemberRepository.findByTeamMemberId(teamMemberId);
+        teamMemberRepository.delete(teamMember);
     }
 
 }

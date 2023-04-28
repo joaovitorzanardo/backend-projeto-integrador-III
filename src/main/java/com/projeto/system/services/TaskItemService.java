@@ -3,13 +3,17 @@ package com.projeto.system.services;
 import com.projeto.system.constants.TaskStatus;
 import com.projeto.system.dto.TaskItemDTO;
 import com.projeto.system.entities.Product;
+import com.projeto.system.entities.Task;
 import com.projeto.system.entities.TaskItem;
 import com.projeto.system.entities.TaskType;
 import com.projeto.system.repositories.ProductRepository;
 import com.projeto.system.repositories.TaskItemRepository;
+import com.projeto.system.repositories.TaskRepository;
 import com.projeto.system.repositories.TaskTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TaskItemService {
@@ -23,10 +27,15 @@ public class TaskItemService {
     @Autowired
     TaskTypeRepository taskTypeRepository;
 
-    public void saveTaskItem(TaskItemDTO taskItemDTO) {
+    @Autowired
+    TaskRepository taskRepository;
+
+    public void saveTaskItem(TaskItemDTO taskItemDTO, Long taskId) {
         Product product = productRepository.findProductByProductId(taskItemDTO.getProductId());
         TaskType taskType = taskTypeRepository.findByTaskTypeId(taskItemDTO.getTaskTypeId());
+        Task task = taskRepository.findTaskByTaskId(taskId);
         TaskItem taskItem = TaskItem.builder()
+                .task(task)
                 .product(product)
                 .taskType(taskType)
                 .description(taskItemDTO.getDescription())
@@ -44,6 +53,11 @@ public class TaskItemService {
         taskItem.setTaskStatus(taskItemDTO.getTaskStatus());
         taskItem.setDescription(taskItemDTO.getDescription());
         taskItemRepository.save(taskItem);
+    }
+
+    public List<TaskItem> getAllTaskItemByTaskId(Long taskId) {
+        Task task = taskRepository.findTaskByTaskId(taskId);
+        return taskItemRepository.findAllByTask(task);
     }
 
 }

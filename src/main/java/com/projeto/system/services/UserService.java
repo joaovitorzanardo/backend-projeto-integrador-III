@@ -19,7 +19,7 @@ public class UserService {
         return  userRepository.findAll();
     }
 
-    public User saveUser(UserDTO userDTO) {
+    public void saveUser(UserDTO userDTO) {
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -27,8 +27,22 @@ public class UserService {
         user.setPassword(userDTO.getPassword());
         user.setOrganization(userDTO.getOrganization());
         user.setUserRole(UserRole.ADMIN);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
+    public void updateUser(UserDTO userDTO, Long userId) {
+        User user = userRepository.findUserByUserId(userId);
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setOrganization(userDTO.getOrganization());
+        userRepository.save(user);
+    }
+
+    public void deleteUser(Long userId) {
+        User user = userRepository.findUserByUserId(userId);
+        userRepository.delete(user);
+    }
 
 }
