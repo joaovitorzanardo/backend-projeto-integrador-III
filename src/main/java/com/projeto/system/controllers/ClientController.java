@@ -42,6 +42,7 @@ public class ClientController {
         return "Cliente Excluído";
     }
 
+    @CrossOrigin
     @GetMapping
     public List<Client> getAllClients() {
         return clientService.getAllClients();
