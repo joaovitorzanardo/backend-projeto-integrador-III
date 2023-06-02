@@ -1,4 +1,4 @@
-package com.projeto.system.constants;
+package constants;
 
 public class TaskStatus {
     public static final Integer NAO_INICIADO = 1;

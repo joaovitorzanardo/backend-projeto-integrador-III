@@ -2,9 +2,7 @@ package com.projeto.system.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "task")
@@ -36,12 +34,24 @@ public class Task {
     private Date deadline;
 
     @ManyToOne
-    @JoinColumn(name = "team_member_id")
-    private TeamMember teamMember;
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @Column(name = "task_status")
     private Integer taskStatus;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-    private List<TaskItem> taskItems;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price")
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "task_type_id")
+    private TaskType taskType;
 
 }

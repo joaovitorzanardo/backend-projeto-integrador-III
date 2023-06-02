@@ -1,6 +1,5 @@
 package com.projeto.system.controllers;
 
-import com.projeto.system.dto.TaskTypeDTO;
 import com.projeto.system.dto.TeamDTO;
 import com.projeto.system.entities.Team;
 import com.projeto.system.services.TeamService;
@@ -18,6 +17,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -28,6 +28,7 @@ public class TeamController {
         return "Equipe Criada com Sucesso!";
     }
 
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateTeam(@Valid @RequestBody TeamDTO teamDTO, @RequestParam Long teamId) {
@@ -35,6 +36,7 @@ public class TeamController {
         return "Equipe Atualizada!";
     }
 
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteTeam(@RequestParam Long teamId) {
@@ -42,6 +44,7 @@ public class TeamController {
         return "Equipe Excluída!";
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<Team> getTeamById(@RequestParam Long teamId) {
         Team team = teamService.getTeamById(teamId);

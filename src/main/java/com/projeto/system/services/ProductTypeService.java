@@ -1,7 +1,6 @@
 package com.projeto.system.services;
 
 import com.projeto.system.dto.ProductTypeDTO;
-import com.projeto.system.entities.Product;
 import com.projeto.system.entities.ProductType;
 import com.projeto.system.repositories.ProductRepository;
 import com.projeto.system.repositories.ProductTypeRepository;
@@ -40,4 +39,9 @@ public class ProductTypeService {
     public List<ProductType> getAllProductTypes() {
         return productTypeRepository.findAll();
     }
+
+    public ProductType getProductTypeById(Long productTypeId) {
+        return productTypeRepository.findProductTypeByProductTypeId(productTypeId);
+    }
+
 }

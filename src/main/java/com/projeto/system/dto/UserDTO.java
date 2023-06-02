@@ -19,4 +19,5 @@ public class UserDTO {
     private String password;
     @NotBlank(message = "O nome da organização deve ser informado.")
     private String organization;
+    private Long teamId;
 }

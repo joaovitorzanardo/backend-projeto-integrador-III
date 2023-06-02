@@ -17,7 +17,7 @@ public class ProductTypeController {
 
     @Autowired
     ProductTypeService productTypeService;
-
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -27,13 +27,14 @@ public class ProductTypeController {
         productTypeService.saveProductType(productTypeDTO);
         return "Tipo de Produto Cadastrado com Sucesso!";
     }
-
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateProductType(@Valid @RequestBody ProductTypeDTO productTypeDTO, @RequestParam Long productTypeId) throws Exception {
         productTypeService.updateProductType(productTypeDTO, productTypeId);
         return "Tipo de Produto Atualizado!";
     }
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteProductType(@RequestParam Long productTypeId) throws Exception {
@@ -41,9 +42,17 @@ public class ProductTypeController {
         return "Tipo de Produto Excluído!";
     }
 
+    @CrossOrigin
     @GetMapping
     public List<ProductType> getAllProductTypes() {
         return productTypeService.getAllProductTypes();
+    }
+
+    @CrossOrigin
+    @GetMapping(params = "productTypeId")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductType getTaskTypeById(@RequestParam Long productTypeId) {
+        return productTypeService.getProductTypeById(productTypeId);
     }
 
 

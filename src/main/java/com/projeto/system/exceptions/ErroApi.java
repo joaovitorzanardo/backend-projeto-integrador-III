@@ -1,4 +1,4 @@
-package exceptions;
+package com.projeto.system.exceptions;
 
 import lombok.Builder;
 import lombok.Data;

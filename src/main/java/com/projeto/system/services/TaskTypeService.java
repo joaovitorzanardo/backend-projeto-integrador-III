@@ -35,4 +35,8 @@ public class TaskTypeService {
         return taskTypeRepository.findAll();
     }
 
+    public TaskType getTaskTypeById(Long taskTypeId) {
+        return taskTypeRepository.findByTaskTypeId(taskTypeId);
+    }
+
 }

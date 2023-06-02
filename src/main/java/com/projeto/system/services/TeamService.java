@@ -2,14 +2,11 @@ package com.projeto.system.services;
 
 import com.projeto.system.dto.TeamDTO;
 import com.projeto.system.entities.Team;
-import com.projeto.system.entities.TeamMember;
-import com.projeto.system.entities.User;
 import com.projeto.system.repositories.TeamRepository;
 import com.projeto.system.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,18 +26,6 @@ public class TeamService {
         Team team = new Team();
         team.setName(teamDTO.getName());
         team.setDescription(teamDTO.getDescription());
-        if (teamDTO.getTeamMembers() != null && !teamDTO.getTeamMembers().isEmpty()) {
-            List<TeamMember> teamMembers = new ArrayList<>();
-            for (Long userId: teamDTO.getTeamMembers()) {
-                User user = userRepository.findUserByUserId(userId);
-                TeamMember teamMember = TeamMember.builder()
-                        .team(team)
-                        .user(user)
-                        .build();
-                teamMembers.add(teamMember);
-            }
-            team.setTeamMembers(teamMembers);
-        }
         teamRepository.save(team);
     }
 

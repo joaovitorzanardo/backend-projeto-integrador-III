@@ -1,6 +1,5 @@
 package com.projeto.system.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +34,6 @@ public class Team {
     private String description;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<TeamMember> teamMembers;
+    private List<User> users;
 
 }

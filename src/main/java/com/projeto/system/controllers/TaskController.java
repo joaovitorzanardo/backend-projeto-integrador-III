@@ -19,6 +19,7 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -29,6 +30,7 @@ public class TaskController {
         return "Tarefa Criada com Sucesso!";
     }
 
+    @CrossOrigin
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();

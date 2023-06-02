@@ -40,7 +40,8 @@ public class User {
     @Column(name = "organization", nullable = false, length = 200)
     private String organization;
 
-    @Column(name = "user_role", nullable = false, length = 50)
-    private String userRole;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
 }

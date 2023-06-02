@@ -1,6 +1,5 @@
 package com.projeto.system.services;
 
-import com.projeto.system.dto.AddressDTO;
 import com.projeto.system.dto.ClientDTO;
 import com.projeto.system.entities.Address;
 import com.projeto.system.entities.Client;

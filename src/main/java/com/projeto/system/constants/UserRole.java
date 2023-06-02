@@ -1,4 +1,4 @@
-package com.projeto.system.constants;
+package constants;
 
 public class UserRole {
     public static final String ADMIN = "ADMIN";

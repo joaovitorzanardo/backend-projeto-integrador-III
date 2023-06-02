@@ -18,6 +18,7 @@ public class TaskTypeController {
     @Autowired
     TaskTypeService taskTypeService;
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -28,6 +29,7 @@ public class TaskTypeController {
         return "Tipo de Tarefa Criada com Sucesso!";
     }
 
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateTaskType(@Valid @RequestBody TaskTypeDTO taskTypeDTO, @RequestParam Long taskTypeId) {
@@ -35,6 +37,7 @@ public class TaskTypeController {
         return "Tipo de Tarefa Atualizada!";
     }
 
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteTaskType(@RequestParam Long taskTypeId) {
@@ -42,9 +45,16 @@ public class TaskTypeController {
         return "Tipo de Tarefa Excluída!";
     }
 
+    @CrossOrigin
     @GetMapping
     public List<TaskType> getAllTaskTypes() {
         return taskTypeService.getAllTaskTypes();
+    }
+    @CrossOrigin
+    @GetMapping(params = "taskTypeId")
+    @ResponseStatus(HttpStatus.OK)
+    public TaskType getTaskTypeById(@RequestParam Long taskTypeId) {
+        return taskTypeService.getTaskTypeById(taskTypeId);
     }
 
 }

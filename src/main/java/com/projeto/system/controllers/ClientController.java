@@ -18,6 +18,7 @@ public class ClientController {
     @Autowired
     ClientService clientService;
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -28,6 +29,7 @@ public class ClientController {
         return "Cliente Cadastrado Com Sucesso!";
     }
 
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateClient(@Valid @RequestBody ClientDTO clientDTO, @RequestParam Long clientId){

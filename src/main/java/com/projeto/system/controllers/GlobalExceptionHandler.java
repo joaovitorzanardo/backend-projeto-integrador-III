@@ -1,7 +1,7 @@
 package com.projeto.system.controllers;
 
-import exceptions.Erro;
-import exceptions.ErroApi;
+import com.projeto.system.exceptions.Erro;
+import com.projeto.system.exceptions.ErroApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

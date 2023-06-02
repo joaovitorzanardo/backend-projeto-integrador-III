@@ -18,6 +18,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -28,6 +29,7 @@ public class ProductController {
         return "Produto Cadastrado com Sucesso!";
     }
 
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateProduct(@Valid @RequestBody ProductDTO productDTO, @RequestParam Long productId) {
@@ -35,6 +37,7 @@ public class ProductController {
         return "Produto Atualizado!";
     }
 
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteProduct(@RequestParam Long productId) throws Exception {
@@ -42,12 +45,14 @@ public class ProductController {
         return "Produto Excluído!";
     }
 
+    @CrossOrigin
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
+    @CrossOrigin
     @GetMapping(path = "/{clientId}")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProductsByClient(@RequestParam Long clientId) {

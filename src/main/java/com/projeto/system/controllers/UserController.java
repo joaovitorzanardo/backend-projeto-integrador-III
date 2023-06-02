@@ -18,11 +18,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @CrossOrigin
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
+    @CrossOrigin
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -33,6 +35,7 @@ public class UserController {
         return "Usuário Criado com Sucesso!";
     }
 
+    @CrossOrigin
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String updateUser(@Valid @RequestBody UserDTO userDTO, @RequestParam Long userId) {
@@ -40,6 +43,7 @@ public class UserController {
         return "Usuário Atualizado!";
     }
 
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteUser(@RequestParam Long userId) {
