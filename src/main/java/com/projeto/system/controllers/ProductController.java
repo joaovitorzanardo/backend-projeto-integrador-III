@@ -53,10 +53,19 @@ public class ProductController {
     }
 
     @CrossOrigin
-    @GetMapping(path = "/{clientId}")
+    @GetMapping(params = "clientId")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAllProductsByClient(@RequestParam Long clientId) {
         return productService.getAllProductsByClient(clientId);
     }
+
+    @CrossOrigin
+    @GetMapping(params = "productId")
+    @ResponseStatus(HttpStatus.OK)
+    public Product getProductByProductId(@RequestParam Long productId) {
+        return productService.getProductByProductId(productId);
+    }
+
+
 
 }

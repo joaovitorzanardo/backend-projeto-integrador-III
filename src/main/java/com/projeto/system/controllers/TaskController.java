@@ -1,6 +1,8 @@
 package com.projeto.system.controllers;
 
+import com.projeto.system.dto.ProductDTO;
 import com.projeto.system.dto.TaskDTO;
+import com.projeto.system.entities.Product;
 import com.projeto.system.entities.Task;
 import com.projeto.system.services.TaskService;
 import jakarta.validation.Valid;
@@ -31,9 +33,31 @@ public class TaskController {
     }
 
     @CrossOrigin
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String updateTask(@Valid @RequestBody TaskDTO taskDTO, @RequestParam Long taskId) throws ParseException {
+        taskService.updateTask(taskDTO, taskId);
+        return "Tarefa Atualizada!";
+    }
+
+    @CrossOrigin
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
+    }
+
+    @CrossOrigin
+    @GetMapping(params = "taskId")
+    @ResponseStatus(HttpStatus.OK)
+    public Task getTaskById(@RequestParam Long taskId) {
+        return taskService.getTaskById(taskId);
+    }
+
+    @CrossOrigin
+    @GetMapping(params = "clientCpf")
+    @ResponseStatus(HttpStatus.OK)
+    public Task getTaskByClientCpf(@RequestParam String clientCpf) {
+        return taskService.getTaskByClientCpf(clientCpf);
     }
 
 }

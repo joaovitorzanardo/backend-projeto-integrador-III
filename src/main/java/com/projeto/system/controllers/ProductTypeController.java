@@ -55,5 +55,4 @@ public class ProductTypeController {
         return productTypeService.getProductTypeById(productTypeId);
     }
 
-
 }

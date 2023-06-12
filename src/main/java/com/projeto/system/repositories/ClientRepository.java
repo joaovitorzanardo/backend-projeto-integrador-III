@@ -9,4 +9,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     public Client findClientByClientId(Long clientId);
 
+    public Client findClientByCpf(String cpf);
+
 }

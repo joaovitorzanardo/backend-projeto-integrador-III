@@ -2,6 +2,7 @@ package com.projeto.system.controllers;
 
 import com.projeto.system.dto.ClientDTO;
 import com.projeto.system.entities.Client;
+import com.projeto.system.entities.TaskType;
 import com.projeto.system.services.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class ClientController {
         return "Cliente Atualizado!";
     }
 
+    @CrossOrigin
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public String deleteClient(@RequestParam Long clientId) throws Exception {
@@ -48,6 +50,13 @@ public class ClientController {
     @GetMapping
     public List<Client> getAllClients() {
         return clientService.getAllClients();
+    }
+
+    @CrossOrigin
+    @GetMapping(params = "clientId")
+    @ResponseStatus(HttpStatus.OK)
+    public Client getTaskTypeById(@RequestParam Long clientId) {
+        return clientService.getClientById(clientId);
     }
 
 
